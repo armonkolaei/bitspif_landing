@@ -189,13 +189,32 @@
                     <div class="col-12 col-xl-5" data-aos-delay="0" data-aos="fade" data-aos-duration="1000">
                         <div class="max-w-2xl mx-auto mx-xl-0">
                             <div class="ratio" style="--bs-aspect-ratio: 76.66%;">
-                                <video alt="bitspif-video" class="img-fluid object-fit-cover rounded-3 rounded-sm-4 rounded-xl-5" autoplay loop muted playsinline>
-                                    <source src="/assets/videos/videoplayback.mp4" type="video/mp4">
+                                <video id="bitspif-video" class="img-fluid object-fit-cover rounded-3 rounded-sm-4 rounded-xl-5" autoplay muted playsinline>
+                                    <source src="/assets/videos/1.mp4" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
                         </div>
                     </div>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const video = document.getElementById('bitspif-video');
+                            const sources = [
+                                '/assets/videos/1.mp4',
+                                '/assets/videos/2.mp4'
+                            ];
+                            let currentSourceIndex = 0;
+
+                            video.addEventListener('ended', function() {
+                                setTimeout(() => {
+                                    currentSourceIndex = (currentSourceIndex + 1) % sources.length;
+                                    video.src = sources[currentSourceIndex];
+                                    video.play();
+                                }, 0); // 5 seconds delay
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>
